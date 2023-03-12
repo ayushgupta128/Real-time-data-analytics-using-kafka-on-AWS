@@ -1,7 +1,5 @@
 # Real-time-data-analytics-using-kafka-on-AWS
 
-# Real-time-data-analytics-using-kafka-on-AWS
-
 In this Project I Simulated a real time covid 19 data from https://api.covid19api.com/summary API.
 
 The data is filtered and cleaned using pandas and then sent to Kafka topic setup in AWS EC2.
