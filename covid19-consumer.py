@@ -6,9 +6,6 @@ import json
 from kafka import KafkaConsumer
 import boto3
 
-
-
-
 # Creating Consumer APIhui
 consumer = KafkaConsumer(
     'demo-testing',
