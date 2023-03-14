@@ -15,8 +15,8 @@ spark = SparkSession(sc)
  
 #Read streaming data from Kafka into Pyspark dataframe
 df=spark.readStream.format('kafka').option('kafka.bootstrap.servers','localhost:9092') \
-                                      .option('subscribe', 'kafka-topic').option("failOnDataLoss","false") \
-                                      .option('startingOffsets', 'earliest').load().selectExpr("CAST(value AS STRING)")
+                                   .option('subscribe', 'kafka-topic').option("failOnDataLoss","false") \
+                                   .option('startingOffsets', 'earliest').load().selectExpr("CAST(value AS STRING)")
 df.printSchema()
 
 
@@ -40,9 +40,6 @@ StructField('Country_total_recovered',StringType()),
 StructField('Extracted_timestamp',TimestampType())
 ])
 
-
-
-
 #Parse the data 
 def parse_data_from_kafka_message(sdf, schema):
   assert sdf.isStreaming == True, "DataFrame doesn't receive streaming data"
@@ -53,7 +50,6 @@ def parse_data_from_kafka_message(sdf, schema):
   return sdf.select([field.name for field in schema])
 
 df = parse_data_from_kafka_message(df, userSchema)
-
 
 #Process the data 
 df_agg=df.groupBy("Country_code","Country_name","Country_total_deaths","Extracted_timestamp").count()
